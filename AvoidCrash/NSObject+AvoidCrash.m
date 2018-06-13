@@ -112,15 +112,16 @@ static NSMutableArray *noneSelClassStringPrefixs;
                 break;
             }
         }
-    }
-    if (flag == NO) {
-        NSString *selfClass = NSStringFromClass([self class]);
-        for (NSString *classStrPrefix in noneSelClassStringPrefixs) {
-            if ([selfClass hasPrefix:classStrPrefix]) {
-                ms = [AvoidCrashStubProxy instanceMethodSignatureForSelector:@selector(proxyMethod)];
+        if (flag == NO) {
+            NSString *selfClass = NSStringFromClass([self class]);
+            for (NSString *classStrPrefix in noneSelClassStringPrefixs) {
+                if ([selfClass hasPrefix:classStrPrefix]) {
+                    ms = [AvoidCrashStubProxy instanceMethodSignatureForSelector:@selector(proxyMethod)];
+                }
             }
         }
     }
+
     return ms;
 }
 
